@@ -1,0 +1,62 @@
+{
+  "name": "subparse",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-plugin-router": "^4.5.13",
+    "@vue/cli-plugin-vuex": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "axios": "^0.21.1",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-wildcard": "^7.0.0",
+    "bootstrap": "^5.0.2",
+    "bootstrap-icons-vue": "^0.7.0",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.6.5",
+    "elasticsearch": "^16.7.2",
+    "epic-spinners": "^1.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "prettier": "^2.2.1",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue": "^2.7.4",
+    "vue-clickaway": "^2.2.2",
+    "vue-fragment": "^1.5.2",
+    "vue-router": "^3.2.0",
+    "vue-template-compiler": "^2.6.11",
+    "vue-tree-table-component": "^0.1.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

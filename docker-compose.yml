@@ -1,0 +1,154 @@
+version: '3.7'
+
+services:
+  #
+  #  ---------------------------------------
+  # | Set Up For Subparse Docker Containers |
+  #  ---------------------------------------
+  #
+  #  ----------------
+  # | Image Versions |
+  #  ----------------
+  #   elasticsearch - 7.15.1
+  #   node - lts-alpine
+  #
+  #  ----------------
+  # | Cluster Set Up |
+  #  ----------------
+  #   ES01 - Main Node for the cluster
+  #   ES02 - Sub Node for the cluter
+  #   ES03 - Sub Node for the cluster
+  #
+  #  ------------
+  # | Web Set Up |
+  #  ------------
+  #   Vue - Container set up for Vue.js instance
+  #         NOTE: No other settings for the Vue container are specified in this file but in the Dockerfile
+  #
+  #  --------------------------------------------------------------------------
+  # | Data Volumne(s) - all volumnes are shared with the same on disk location |
+  #  --------------------------------------------------------------------------
+  #   ES01 - data1 
+  #   ES02 - data2
+  #   ES03 - data3
+  #
+  #  --------------------------------------------------
+  # | JAVA JVM Modification(s) (For Elastic Instances) |
+  #  --------------------------------------------------
+  #   ES_JAVA_OPTS
+  #       - Xms1g (Minimum Heap Size Allowed - 1 GB)
+  #       - Xmx1g (Maximum Heap Size Allowed - 1 GB)
+  #       !! NOTE: NO MORE THAN 50% OF YOUR TOTAL MEMORY IS TO BE USED FOR THIS SETTING
+  #           - For example, to set the maximum heap size to 2GB, set both Xms and Xmx to 2g
+  #           - More information can be found at: https://www.elastic.co/guide/en/elasticsearch/reference/7.16/advanced-configuration.html
+  #
+  #  ------------------------
+  # | Docker Network         |
+  #  ------------------------
+  #   elastic - main network for these containers to communicate on 
+  #
+  #  ------------------
+  # | Internal Network |
+  #  ------------------
+  #   localhost - 127.0.0.1 - local network address
+  #   9200 - port to connect to the elastic cluster
+  #   8080 - port to connect to vue container
+  #
+
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    container_name: elastic-01
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - ${ES_PORT}:9200
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - cluster.initial_master_nodes=es01
+      # - discovery.seed_hosts=es02,es03
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.monitoring.templates.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+      - xpack.license.self_generated.type=${LICENSE}
+      - http.host=0.0.0.0
+      - http.port=9200
+      - "http.cors.allow-origin='*'"
+      - "http.cors.enabled=true"
+      - "http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization"
+      - "http.cors.allow-credentials=true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  vue:
+    container_name: subparse-site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./viewer:/app
+    ports:
+      - 8080:8080
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    container_name: zookeeper
+    networks:
+      - kafka
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+      - 8081:8080
+
+    volumes:
+      - 'zookeeper_data:/bitnami'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: 'yes'
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: kafka-service-messager
+    networks:
+      - kafka
+    ports:
+      - 9092:9092
+      - 29092:29092
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:29092
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+
+    depends_on:
+      - zookeeper
+
+volumes:
+  esdata01:
+    driver: local
+  esdata02:
+    driver: local
+  esdata03:
+    driver: local
+  subparse-site:
+    driver: local
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
+  kafka:
+    driver: bridge

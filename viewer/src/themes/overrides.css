@@ -1,0 +1,306 @@
+/* dark form controls ------------------------------------------------------ */
+input.form-control,
+input.form-control:focus,
+select.form-control,
+select.form-control:focus,
+textarea.form-control,
+textarea.form-control:focus {
+  color: var(--color-foreground, #000);
+  background-color: var(--color-inputs, #FFF);
+}
+
+input.form-control:disabled,
+select.form-control:disabled,
+textarea.form-control:disabled {
+  color: var(--color-gray-darker, #333);
+  background-color: var(--color-gray-lighter, #DDD);
+}
+
+
+/* dark default buttons ---------------------------------------------------- */
+.btn.btn-default {
+  border-color: var(--color-gray);
+  color: var(--color-foreground, #333);
+  background-color: var(--color-background, #FFF);
+}
+
+.btn.btn-default.active {
+  border-color: var(--color-gray);
+  color: var(--color-foreground, #333);
+  background-color: var(--color-gray-light);
+}
+
+.btn.btn-default:hover {
+  color: #333;
+  border-color: var(--color-gray);
+  background-color: var(--color-gray);
+}
+
+
+/* themed input groups ----------------------------------------------------- */
+.input-group-prepend>.input-group-text,
+.input-group-append:not(.color)>.input-group-text {
+  border-color: var(--color-gray) !important;
+  color: var(--color-foreground, #555) !important;
+  background-color: var(--color-background, #EEE) !important;
+}
+
+
+/* give error text theme color --------------------------------------------- */
+.text-danger {
+  color: var(--color-foreground-accent);
+}
+
+
+/* display labels inline with proper wrapping ------------------------------ */
+.label {
+  /* https://github.com/twbs/bootstrap/issues/13219 */
+  display: inline-block;
+}
+
+
+/* super awesome tables ---------------------------------------------------- */
+/* condense the table more! */
+.table-sm>thead>tr>th,
+.table-sm>tbody>tr>th,
+.table-sm>tfoot>tr>th,
+.table-sm>thead>tr>td,
+.table-sm>tbody>tr>td,
+.table-sm>tfoot>tr>td {
+  padding: 0.1rem 0.5rem;
+}
+
+/* make stripes darker */
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: var(--color-gray-lighter);
+}
+
+/* don't stripe average and total rows */
+.table-striped>tbody>tr.average-row,
+tr.total-row {
+  background-color: var(--color-background);
+}
+
+/* give hoverable rows theme color */
+.table-hover tbody tr:hover {
+  background-color: var(--color-gray-light);
+}
+
+/* make active table items darker */
+.table>thead>tr>td.active,
+.table>tbody>tr>td.active,
+.table>tfoot>tr>td.active,
+.table>thead>tr>th.active,
+.table>tbody>tr>th.active,
+.table>tfoot>tr>th.active,
+.table>thead>tr.active>td,
+.table>tbody>tr.active>td,
+.table>tfoot>tr.active>td,
+.table>thead>tr.active>th,
+.table>tbody>tr.active>th,
+.table>tfoot>tr.active>th {
+  background-color: var(--color-gray-lighter);
+}
+
+
+/* give navs theme color --------------------------------------------------- */
+.navbar {
+  background-color: var(--color-gray-light);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+  color: var(--color-black);
+  background-color: var(--color-gray-light);
+}
+
+.nav-pills>a.nav-link {
+  color: var(--color-foreground, #333);
+}
+
+.nav-pills>a.nav-link.active,
+.nav-pills>a.nav-link.active:hover,
+.nav-pills>a.nav-link.active:focus {
+  color: var(--color-button, #FFF);
+  background-color: var(--color-primary);
+}
+
+.nav-tabs>li.nav-item>a.nav-link.active,
+.nav-tabs>li.nav-item>a.nav-link.active:hover,
+.nav-tabs>li.nav-item>a.nav-link.active:focus {
+  font-weight: bold;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border-bottom-color: var(--color-background, #fff);
+}
+
+
+/* give pagination theme color --------------------------------------------- */
+.pagination .page-item>.page-link {
+  cursor: pointer !important;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-gray-light);
+}
+
+.pagination .page-item.disabled {
+  cursor: not-allowed !important;
+}
+
+.pagination .page-item.disabled>span,
+.pagination .page-item.disabled>span:hover,
+.pagination .page-item.disabled>span:focus,
+.pagination .page-item.disabled>a,
+.pagination .page-item.disabled>a:hover,
+.pagination .page-item.disabled>a:focus .pagination .page-item.disabled>button,
+.pagination .page-item.disabled>button:hover,
+.pagination .page-item.disabled>button:focus {
+  color: var(--color-gray-light);
+  border-color: var(--color-gray-light);
+  background-color: var(--color-background);
+}
+
+.pagination .page-item.active>a,
+.pagination .page-item.active>span,
+.pagination .page-item.active>button,
+.pagination .page-item.active>a:hover,
+.pagination .page-item.active>span:hover,
+.pagination .page-item.active>button:hover,
+.pagination .page-item.active>a:focus,
+.pagination .page-item.active>span:focus,
+.pagination .page-item.active>button:focus {
+  z-index: 3;
+  cursor: default;
+  color: var(--color-background);
+  border-color: var(--color-gray-light);
+  background-color: var(--color-primary-lighter);
+}
+
+
+/* display dropdown results in scrolling div ------------------------------- */
+input.field-typeahead+ul[uib-typeahead-popup] {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* give dropdowns theme color and make them more condensed ----------------- */
+.dropdown-menu {
+  padding: 2px 0;
+  min-width: 12rem;
+  font-size: .85rem;
+  border-color: var(--color-gray-light);
+  background-color: var(--color-background, #FFF);
+}
+
+.dropdown-menu a.dropdown-item,
+.dropdown-menu div.custom-control {
+  display: block;
+  padding: 2px 8px;
+  color: var(--color-foreground, #212529);
+}
+
+.dropdown-menu a.dropdown-item:hover,
+.dropdown-menu a.dropdown-item:focus {
+  color: var(--color-foreground, #212529);
+  background-color: var(--color-gray-light);
+}
+
+.dropdown-menu a.dropdown-item.active,
+.dropdown-menu li.active a.dropdown-item {
+  color: var(--color-white, #FFF);
+  background-color: var(--color-primary);
+}
+
+.dropdown-menu a.dropdown-item.active:hover,
+.dropdown-menu li.active:hover a.dropdown-item,
+.dropdown-menu a.dropdown-item.active:focus,
+.dropdown-menu li.active:focus a.dropdown-item {
+  background-color: var(--color-primary-light);
+}
+
+/* give cards theme color -------------------------------------------------- */
+.card {
+  border-color: var(--color-gray-light);
+  background-color: var(--color-background, #FFF);
+}
+
+.card .card-header {
+  color: var(--color-foreground, #333);
+  background-color: var(--color-gray-light)
+}
+
+
+/* give wells theme color -------------------------------------------------- */
+.well {
+  padding: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--color-gray-light);
+  background-color: var(--color-gray-lighter);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.well-sm {
+  padding: 3px 9px;
+}
+
+
+/* give pres theme color --------------------------------------------------- */
+pre {
+  border-color: var(--color-gray-light);
+  background-color: var(--color-gray-lighter);
+}
+
+
+/* increase the width of tooltips (mostly for es stats in navbar) ---------- */
+.tooltip-inner {
+  max-width: 350px;
+}
+
+
+/* apply theme colors to the datetimepicker -------------------------------- */
+.bootstrap-datetimepicker-widget,
+.bootstrap-datetimepicker-widget .btn {
+  color: var(--color-foreground);
+}
+
+/* gray out day buttons that are not part of the current month */
+.bootstrap-datetimepicker-widget td.day.old,
+.bootstrap-datetimepicker-widget td.day.new {
+  color: var(--color-gray-light);
+}
+
+/* theme color for month, year, and decade buttons */
+.bootstrap-datetimepicker-widget table td:hover>span.year:not(.active),
+.bootstrap-datetimepicker-widget table td:hover>span.month:not(.active),
+.bootstrap-datetimepicker-widget table td:hover>span.decade:not(.active) {
+  color: var(--color-forground);
+}
+
+/* darken buttons on hover */
+.bootstrap-datetimepicker-widget .btn:hover,
+.bootstrap-datetimepicker-widget table td.day:hover,
+.bootstrap-datetimepicker-widget table td.hour:hover,
+.bootstrap-datetimepicker-widget table td.minute:hover,
+.bootstrap-datetimepicker-widget table td.second:hover,
+.bootstrap-datetimepicker-widget table th.prev:hover,
+.bootstrap-datetimepicker-widget table th.next:hover,
+.bootstrap-datetimepicker-widget table td>span.year:hover,
+.bootstrap-datetimepicker-widget table td>span.month:hover,
+.bootstrap-datetimepicker-widget table td>span.decade:hover,
+.bootstrap-datetimepicker-widget table td>span.timepicker-hour:hover,
+.bootstrap-datetimepicker-widget table td>span.timepicker-minute:hover,
+.bootstrap-datetimepicker-widget table td>span.timepicker-second:hover,
+.bootstrap-datetimepicker-widget table th.picker-switch:hover,
+.bootstrap-datetimepicker-widget table td>a:hover {
+  color: black !important;
+}
+
+
+/* apply theme colors to modals -------------------------------------------- */
+.modal-content {
+  background-color: var(--color-background);
+}
