@@ -1,4 +1,5 @@
 import os
+import traceback
 from pydoc import locate
 from src.helpers.logging import SubParserLogger
 from src import Invoker, SubParserLogger, ThreadCommand
@@ -9,15 +10,19 @@ class ParserEngine(ThreadCommand):
         self.parser_modules = {}
 
     def load_imports(self) -> dict:
-        self.logger.info("Loading Imports...")
-        for parser in os.listdir(os.path.join('.', 'src', "parsers")):
-            if not parser.startswith('__'):
-                _file_name = str(parser).replace('.py','')
-                dynamic_class = locate("src.parsers.%s.%s" % (_file_name, _file_name))
-                if dynamic_class == None:
-                    self.logger.error("Error Finding Parser " + _file_name + ". Check file & class name.")
-                else:
-                    self.parser_modules[_file_name] = {"class" : dynamic_class, "information" : dynamic_class().information()}
+        try:
+            self.logger.info("Loading Imports...")
+            for parser in os.listdir(os.path.join('.', 'src', "parsers")):
+                if not parser.startswith('__'):
+                    _file_name = str(parser).replace('.py','')
+                    dynamic_class = locate("src.parsers.%s.%s" % (_file_name, _file_name))
+                    if dynamic_class == None:
+                        self.logger.error("Error Finding Parser " + _file_name + ". Check file & class name.")
+                    else:
+                        self.parser_modules[_file_name] = {"class" : dynamic_class, "information" : dynamic_class().information()}
+        except Exception as e:
+            print(str(e))
+            traceback.print_exc()
 
     # def process_sample(self, sample: dict):
     def execute(self, collected_data: dict = None) -> dict:

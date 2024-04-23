@@ -16,3 +16,9 @@ oletools == 0.60.1
 flare-floss == 2.0.0
 yara-python == 4.2.0
 python_magic == 0.4.27
+pyparsing>=2.1.0,<3
+olefile>=0.46
+easygui
+colorclass
+msoffcrypto-tool; platform_python_implementation!="PyPy" or (python_version>="3" and platform_system!="Windows" and platform_system!="Darwin")
+pcodedmp>=1.2.5

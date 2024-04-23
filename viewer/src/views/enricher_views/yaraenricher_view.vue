@@ -1,6 +1,6 @@
 <template>
     <div> 
-        <b-card bg-variant="subparse-default" text-variant="white" header="Yara Enricher" no-body>    
+        <b-card text-variant="white" header="Yara Enricher" no-body>    
             <table class="general">
                 <tbody>
                     <!-- General Information --> 

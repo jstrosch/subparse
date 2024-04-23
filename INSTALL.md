@@ -131,7 +131,7 @@ navigate into the `viewer` folder and run the command below to install the requi
 NOTE: There will be some deprecated warnings, it is okay to ignore them
 
 ```
-npm install .
+npm install --legacy-peer-deps
 ```
 
 ## DONE

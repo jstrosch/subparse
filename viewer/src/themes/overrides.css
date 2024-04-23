@@ -61,6 +61,10 @@ textarea.form-control:disabled {
 
 /* super awesome tables ---------------------------------------------------- */
 /* condense the table more! */
+.table > :not(caption) > * > * {
+  background-color: #81A1C1;
+}
+
 .table-sm>thead>tr>th,
 .table-sm>tbody>tr>th,
 .table-sm>tfoot>tr>th,
@@ -72,18 +76,18 @@ textarea.form-control:disabled {
 
 /* make stripes darker */
 .table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: var(--color-gray-lighter);
+  background-color: var(#81A1C1);
 }
 
 /* don't stripe average and total rows */
 .table-striped>tbody>tr.average-row,
 tr.total-row {
-  background-color: var(--color-background);
+  background-color: var(#81A1C1);
 }
 
 /* give hoverable rows theme color */
 .table-hover tbody tr:hover {
-  background-color: var(--color-gray-light);
+  background-color: var(#81A1C1);
 }
 
 /* make active table items darker */
@@ -99,17 +103,19 @@ tr.total-row {
 .table>thead>tr.active>th,
 .table>tbody>tr.active>th,
 .table>tfoot>tr.active>th {
-  background-color: var(--color-gray-lighter);
+  background-color: var(#81A1C1);
 }
 
 
 /* give navs theme color --------------------------------------------------- */
+
 .navbar {
   background-color: var(--color-gray-light);
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   margin-bottom: 0.3rem;
 }
+
 
 .nav>li>a:hover,
 .nav>li>a:focus {
@@ -225,11 +231,11 @@ input.field-typeahead+ul[uib-typeahead-popup] {
 /* give cards theme color -------------------------------------------------- */
 .card {
   border-color: var(--color-gray-light);
-  background-color: var(--color-background, #FFF);
+  /* background-color: var(--color-background, #FFF); */
 }
 
 .card .card-header {
-  color: var(--color-foreground, #333);
+  color: var(#D8DEE9);
   background-color: var(--color-gray-light)
 }
 

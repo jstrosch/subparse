@@ -55,7 +55,7 @@ def main(_main: Main, _sample_files: List[str]):
         raise ke
     except Exception as e:
         _main.logger.critical("MASSIVE ERROR :: " + str(e))
-# endregion
+
 
 # region Callback for watchdog
 # should be moved to the main object

@@ -1,18 +1,18 @@
 body.subparse-dark-theme {
   /* basic colors */
-  --color-background: #303030;
-  --color-foreground: #FFFFFF;
+  /* --color-background: #303030; */
+  --color-foreground: #3B4252;
   --color-foreground-accent: #D1E9DC;
 
   --color-white: #333333;
   --color-gray-dark: #F6F6F6;
   --color-gray-darker: #EEEEEE;
   --color-gray: #CCCCCC;
-  --color-gray-light: #777777;
+  --color-gray-light: #2E3440;
   --color-gray-lighter: #555555;
   --color-black: #FFFFFF;
   --color-button: #333333;
-  --color-inputs: #222222;
+  --color-inputs: #D8DEE9;
 
   /* theme colors */
   --color-primary: #ADADAD;
@@ -51,6 +51,9 @@ body.subparse-dark-theme {
   --color-src: #FF70B8;
   --color-dst: #B09AFD;
 
-  --bs-body-bg: var(--color-background);
+  /* --bs-body-bg: var(--color-background); */
+  --bs-body-bg: #434C5E;
   --bs-body-line-height: 1.5;
+  --bs-navbar-brand-color: #fff;
+
 }

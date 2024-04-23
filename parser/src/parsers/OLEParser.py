@@ -582,7 +582,7 @@ class OLEParser(Command):
                             _tmp['clsid'] = rtfobj.__dict__['clsid']
                             _tmp['cve'] = rtfobj.clsid_desc
                         _rtf.append(_tmp)
-                #region RTF End
+                
 
             #region Adding sample to data to return
             _data['meta_data'] = _meta
